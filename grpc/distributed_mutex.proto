@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package distributed_mutex;
+
+option go_package = "grpc/distributed_mutex";
+
+message CallElectionMessage {
+    
+}
+
+message CallElectionResponseMessage {
+    
+}
+
+message AssertCoordinatorMessage {
+    string port = 1;
+}
+
+message AssertCoordinatorResponseMessage {
+    string port = 1;
+}
+
+
+message ResourceRequestMessage {
+    string port = 1;
+}
+
+message ResourceRequestResponse {
+    bool is_request_granted = 1;
+}
+
+service ResourceAccess {
+    rpc CallElection(CallElectionMessage) returns (CallElectionResponseMessage);
+    rpc AssertCoordinator(AssertCoordinatorMessage) returns (AssertCoordinatorResponseMessage);
+    rpc RequestResourceAccess(ResourceRequestMessage) returns (ResourceRequestResponse);
+} 
